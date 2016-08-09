@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 
-public class Movement : MonoBehaviour {
+public class Movement : NetworkBehaviour {
 
     private Rigidbody2D rigidBody;
     private Animator animator;
@@ -16,6 +17,9 @@ public class Movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+        if (!isLocalPlayer)
+            return;
+
         float vertical = Input.GetAxis("Vertical");
         float horizontal = Input.GetAxis("Horizontal");
 
